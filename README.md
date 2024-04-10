@@ -20,11 +20,18 @@ El proyecto está realizado en:
 ## Link de Deploy Frontend 🌐
 - [Netlify](https://hotelmiradordelvalle.netlify.app/)
 
+## Programas necesarios
+Para poder utilizar el proyecto en localhost en necesario clonarlo y tener algunos programas necesarios:
+- [Nodejs](https://nodejs.org/en) v20.11.1 o Superior.
+- IDE de desarrollo de tu comodidad Ej. [VSCode](https://code.visualstudio.com/)
+- [PostMan](https://www.postman.com/) para puebas de APIS. (Opcional)
+- [Git](https://git-scm.com/) para poder gestionar las versiones.
+
 ##  Instalación ⚙️
 1. Clonar el repositorio usando el comando `git clone`.
 2. Buscar el nombre del repositorio clonado en el explorador de archivos.
-<!-- 3. Instalar las dependencias usando el comando `npm install`. 
-4. Para ver el ejercicio en el navegador, ejecutar el comando `npm run dev`.  -->
+3. Instalar las dependencias usando el comando `npm install`. 
+4. Para correr el programa, ejecutar el comando `npm run dev`. 
 
 ##  Cómo contribuir ✍️
 Si desea contribuir a mejorar nuestra página web, puede seguir estos pasos:
@@ -34,9 +41,9 @@ Si desea contribuir a mejorar nuestra página web, puede seguir estos pasos:
 
 
 ## Autores 👷‍♂️
-- Guadalupe Noemi Villarreal | [GitHub](https://github.com/guadavillarreal)
-- Pablo Alejandro Figueroa | [GitHub](https://github.com/pabloAle21)
-- José Manuel Vera Rodríguez | [GitHub](https://github.com/jomanuelvr)
-- Natalia Gabriela Lopez | [GitHub](https://github.com/NataliaGabriela)
-- Agustina Del Milagro Suarez | [GitHub](https://github.com/suarezagustina)
-- Capdevila Lucas | [GitHub](https://github.com/lucasecapdevila)
+- Guadalupe Noemi Villarreal: [GitHub](https://github.com/guadavillarreal)
+- Pablo Alejandro Figueroa: [GitHub](https://github.com/pabloAle21)
+- José Manuel Vera Rodríguez: [GitHub](https://github.com/jomanuelvr)
+- Natalia Gabriela Lopez: [GitHub](https://github.com/NataliaGabriela)
+- Agustina Del Milagro Suarez: [GitHub](https://github.com/suarezagustina)
+- Capdevila Lucas: [GitHub](https://github.com/lucasecapdevila)
