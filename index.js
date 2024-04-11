@@ -4,6 +4,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import habitacionesRouter from './src/routes/habitaciones.routes.js'
+
 const app = express();
 
 app.set('port', process.env.PORT || 4000)
@@ -21,7 +23,4 @@ const __dirname = path.dirname(__filename);
 //console.log(path.join(__dirname,'/public'))
 app.use(express.static(path.join(__dirname,'/public')))
 
-app.get('/nuevo', (req, res)=>{
-    console.log('procesando solicitud')
-    res.send('respuesta del backend')
-})
+app.use('/api', habitacionesRouter)
