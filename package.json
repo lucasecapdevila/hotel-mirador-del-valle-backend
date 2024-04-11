@@ -3,10 +3,26 @@
   "version": "1.0.0",
   "description": "Proyecto Backend de Hotel Mirador del Valle",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon --exec node index.js"
   },
-  "keywords": ["Habitaciones", "Usuarios", "Validaciones", "Controllers", "Data Base", "MongoDB"],
+  "keywords": [
+    "Habitaciones",
+    "Usuarios",
+    "Validaciones",
+    "Controllers",
+    "Data Base",
+    "MongoDB"
+  ],
   "author": "Guadalupe Noemi Villarreal, Pablo Alejandro Figueroa, José Manuel Vera Rodríguez, Natalia Gabriela Lopez, Agustina Del Milagro Suarez, Lucas Capdevila",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "morgan": "^1.10.0"
+  }
 }
