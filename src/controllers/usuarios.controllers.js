@@ -25,3 +25,16 @@ export const crearUsuario = async(req, res) =>{
         })
     }
 }
+export const obtenerUsuario = async (req, res)=>{
+    try {
+        console.log(req.params.id)
+        const usuarioBuscado = await Usuario.findById(req.params.id);
+        if (!usuarioBuscado) {
+            return res.status(404).json({mensaje:"El usuario vcon el id enviado no existe"})
+        }
+        res.status(200).json(usuarioBuscado);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({mensaje:"No se pudo encontrar el usuario solicitado"})
+    }
+}
