@@ -1,7 +1,12 @@
 import Usuario from "../database/models/usuario.js"
-export const listarUsuarios = (req, res)=>{
-    console.log('aqui preparo la lista de usuarios')
-    res.send('Enviando la lista de usuarios')
+export const listarUsuarios = async(req, res)=>{
+   try{
+    const usuarios = await Usuario.find();
+    res.status(200).json(usuarios)
+    }catch(error){
+        console.log(error)
+        res.status(500).json({mensaje: "Error al buscar los usuarios"})
+    }
 }
 
 export const crearUsuario = async(req, res) =>{
