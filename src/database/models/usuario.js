@@ -3,6 +3,14 @@ import mongoose, { Schema } from "mongoose";
 const usuarioSchema = new Schema({
   imgUser: {
     type: String,
+    required: true,
+    validate: {
+      validator: (valor) => {
+        return  /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/.test(valor);
+      },
+      message: (dato) => `${dato.value} no es una dirección de correo valida`,
+    },
+   
     unique: true,
   },
   userEmail: {
