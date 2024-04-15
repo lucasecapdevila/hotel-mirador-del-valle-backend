@@ -44,8 +44,8 @@ export const obtenerUsuario = async (req, res) => {
 };
 export const editarUsuario = async (req, res) => {
   try {
-    const usuariooBuscado = await Usuario.findById(req.params.id);
-    if (!usuariooBuscado) {
+    const usuarioBuscado = await Usuario.findById(req.params.id);
+    if (!usuarioBuscado) {
       return res.status(404).json({ mensaje: "No se encontro el usuario con el id especificado" });
     }
     await Usuario.findByIdAndUpdate(req.params.id, req.body);
@@ -55,3 +55,17 @@ export const editarUsuario = async (req, res) => {
     res.status(500).json({ mensaje: "Ocurrio un error no se pudo editar el usuario" });
   }
 };
+export const borrarUsuario = async (req, res) => {
+  try {
+    const usuarioBuscado = await Usuario.findById(req.params.id);
+    if (!usuarioBuscado) {
+      return res.status(404).json({ mensaje: "No se pudo borrar el usuario con el id especificado" });
+    }
+    await Usuario.findByIdAndDelete(req.params.id);
+    res.status(200).json({ mensaje: "El usuario fue eliminado exitosamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Ocurrio un error no se pudo borrar el usuario" });
+  }
+};
+
