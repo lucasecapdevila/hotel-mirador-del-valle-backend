@@ -8,7 +8,7 @@ const usuarioSchema = new Schema({
       validator: (valor) => {
         return  /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/.test(valor);
       },
-      message: (dato) => `${dato.value} no es una dirección de correo valida`,
+      message: (dato) => `${dato.value} no es un formato de imagen válido`,
     },
    
     unique: true,
@@ -36,8 +36,7 @@ const usuarioSchema = new Schema({
         return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(valor);
       },
       message: (dato) => `${dato.value} no es una contraseña valida`,
-    },
-    unique: true,
+    }
   },
   userName: {
     type: String,
@@ -50,13 +49,13 @@ const usuarioSchema = new Schema({
     type: String,
     required: true,
     minLength: 3,
-    maxLength: 15,
+    maxLength: 30,
   },
   apellidoUser: {
     type: String,
     required: true,
     minLength: 3,
-    maxLength: 20,
+    maxLength: 30,
   },
 });
 const Usuario = mongoose.model("usuario", usuarioSchema);

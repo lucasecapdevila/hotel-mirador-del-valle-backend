@@ -32,7 +32,7 @@ export const obtenerUsuario = async (req, res) => {
     if (!usuarioBuscado) {
       return res
         .status(404)
-        .json({ mensaje: "El usuario vcon el id enviado no existe" });
+        .json({ mensaje: "El usuario con el id enviado no existe" });
     }
     res.status(200).json(usuarioBuscado);
   } catch (error) {
