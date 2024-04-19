@@ -54,3 +54,16 @@ export const crearReserva = async (req, res) => {
       res.status(500).json({ mensaje: "Ocurrio un error no se pudo editar la reserva" });
     }
   };
+  export const borrarReserva = async (req, res) => {
+    try {
+      const reservaBuscada = await Reserva.findById(req.params.id);
+      if (!reservaBuscada) {
+        return res.status(404).json({ mensaje: "No se pudo borrar la reserva con el id especificado" });
+      }
+      await Reserva.findByIdAndDelete(req.params.id);
+      res.status(200).json({ mensaje: "La reserva fue eliminada exitosamente" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ mensaje: "Ocurrio un error no se pudo borrar la reserva" });
+    }
+  };
