@@ -41,3 +41,16 @@ export const crearReserva = async (req, res) => {
         .json({ mensaje: "No se pudo encontrar la reserva solicitada" });
     }
   };
+  export const editarReserva = async (req, res) => {
+    try {
+      const reservaBuscada = await Reserva.findById(req.params.id);
+      if (!reservaBuscada) {
+        return res.status(404).json({ mensaje: "No se encontro la rserva con el id especificado" });
+      }
+      await Reserva.findByIdAndUpdate(req.params.id, req.body);
+      res.status(200).json({ mensaje: "La reserva fue editada exitosamente" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ mensaje: "Ocurrio un error no se pudo editar la reserva" });
+    }
+  };
