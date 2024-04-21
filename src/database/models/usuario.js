@@ -30,10 +30,10 @@ const usuarioSchema = new Schema({
     type: String,
     required: true,
     minLength: 8,
-    maxLength: 15,
+    maxLength: 20,
     validate: {
       validator: (valor) => {
-        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(valor);
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/.test(valor);
       },
       message: (dato) => `${dato.value} no es una contraseña valida`,
     }
@@ -42,8 +42,14 @@ const usuarioSchema = new Schema({
     type: String,
     required: true,
     minLength: 3,
-    maxLength: 15,
+    maxLength: 20,
     unique: true,
+    validate: {
+      validator: (valor) => {
+        return /^[a-z0-9]{3,20}/.test(valor);
+      },
+      message: (dato) => `${dato.value} debe contener solo letras minúsculas y se pueden colocar números`,
+    }
   },
   nombreUser: {
     type: String,
@@ -57,6 +63,12 @@ const usuarioSchema = new Schema({
     minLength: 3,
     maxLength: 30,
   },
+  esAdmin: {
+    type: Boolean,
+    default: false
+  },
+}, {
+  timestamps: true,
 });
 const Usuario = mongoose.model("usuario", usuarioSchema);
 export default Usuario;
