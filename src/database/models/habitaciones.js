@@ -19,35 +19,14 @@ const habitacionSchema = new Schema({
   precioHabitacion: {
     type: Number,
     required: true,
-  },
-  // reservasActuales: [
-  //   {
-  //     id: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     idUsuario: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     fechaEntrada: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     fechaSalida: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     precioTotal: {
-  //       type: Number,
-  //       required: true,
-  //     },
-  //     diasTotales: {
-  //       type: Number,
-  //       required: true,
-  //     },
-  //   }
-  // ],
+    validate: {
+        validator: function(value) {
+            return value >= 5000 && value <= 30000;
+        },
+        message: props => `${props.value} El precio debe ser de 5000 como mínimo y 30000 como máximo.`
+    }
+},
+  reservasActuales: [],
   imagenHabitacion: {
     type: String,
     required: true,
