@@ -1,11 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
 const habitacionSchema = new Schema({
-  // id: {
-  //   type: String,
-  //   required: true,
-  //   unique: true,
-  // },
   numeroHabitacion: {
     type: Number,
     required: true,
@@ -19,12 +14,7 @@ const habitacionSchema = new Schema({
   precioHabitacion: {
     type: Number,
     required: true,
-    validate: {
-        validator: function(value) {
-            return value >= 5000 && value <= 30000;
-        },
-        message: props => `${props.value} El precio debe ser de 5000 como mínimo y 30000 como máximo.`
-    }
+    min:5000,
 },
   reservasActuales: [],
   imagenHabitacion: {
