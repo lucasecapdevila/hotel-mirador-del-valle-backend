@@ -20,34 +20,34 @@ const habitacionSchema = new Schema({
     type: Number,
     required: true,
   },
-  reservasActuales: [
-    {
-      id: {
-        type: String,
-        required: true,
-      },
-      idUsuario: {
-        type: String,
-        required: true,
-      },
-      fechaEntrada: {
-        type: String,
-        required: true,
-      },
-      fechaSalida: {
-        type: String,
-        required: true,
-      },
-      precioTotal: {
-        type: Number,
-        required: true,
-      },
-      diasTotales: {
-        type: Number,
-        required: true,
-      },
-    }
-  ],
+  // reservasActuales: [
+  //   {
+  //     id: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     idUsuario: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     fechaEntrada: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     fechaSalida: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     precioTotal: {
+  //       type: Number,
+  //       required: true,
+  //     },
+  //     diasTotales: {
+  //       type: Number,
+  //       required: true,
+  //     },
+  //   }
+  // ],
   imagenHabitacion: {
     type: String,
     required: true,
