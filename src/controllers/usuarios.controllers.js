@@ -1,4 +1,6 @@
 import Usuario from "../database/models/usuario.js";
+import bcrypt from 'bcrypt'
+
 export const listarUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find();
@@ -9,14 +11,24 @@ export const listarUsuarios = async (req, res) => {
   }
 };
 
-export const crearUsuario = async (req, res) => {
+export const registrarUsuario = async (req, res) => {
   try {
-    console.log(req);
-    console.log(req.body);
+    const { userEmail, userPassword } = req.body
+    const usuarioBuscado = await Usuario.findOne({userEmail})
+    if(usuarioBuscado){
+      return res.status(400).json({
+        mensaje: 'Este correo ya se encuentra registrado.'
+      })
+    }
+
     const usuarioNuevo = new Usuario(req.body);
+    const salt = bcrypt.genSaltSync(10)
+    usuarioNuevo.userPassword = bcrypt.hashSync(userPassword, salt)
     await usuarioNuevo.save();
     res.status(201).json({
       mensaje: "El usuario fue creado exitosamente",
+      email: usuarioNuevo.userEmail,
+      userName: usuarioNuevo.userName
     });
   } catch (error) {
     console.log(error);

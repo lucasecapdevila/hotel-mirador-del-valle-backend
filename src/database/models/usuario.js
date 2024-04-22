@@ -29,14 +29,6 @@ const usuarioSchema = new Schema({
   userPassword: {
     type: String,
     required: true,
-    minLength: 8,
-    maxLength: 20,
-    validate: {
-      validator: (valor) => {
-        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/.test(valor);
-      },
-      message: (dato) => `${dato.value} no es una contraseña valida`,
-    }
   },
   userName: {
     type: String,
