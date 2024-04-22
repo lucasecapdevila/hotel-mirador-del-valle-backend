@@ -1,11 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
 const habitacionSchema = new Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  // id: {
+  //   type: String,
+  //   required: true,
+  //   unique: true,
+  // },
   numeroHabitacion: {
     type: Number,
     required: true,
@@ -62,10 +62,14 @@ const habitacionSchema = new Schema({
   descripcionBreve: {
     type: String,
     required: true,
+    minLength: 10,
+    maxLength: 80,
   },
   descripcionAmplia: {
     type: String,
     required: true,
+    minLength: 20,
+    maxLength: 500,
   },
 });
 
