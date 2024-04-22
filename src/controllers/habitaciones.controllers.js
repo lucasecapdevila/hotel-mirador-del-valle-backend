@@ -13,6 +13,20 @@ export const listarHabitaciones = async (req, res) => {
     }
   };
 
+  export const obtenerHabitacion = async (req, res) => {
+    try {
+        const habitacionBuscada = await Habitacion.findById(req.params.id)
+        if(!habitacionBuscada){
+            return res.status(404).json({mensaje: 'No existe habitacion asociada a esa id.'})
+        }
+        res.status(200).json(habitacionBuscada)
+    }
+    catch (error) {
+        console.error(error);
+        res.status(400).json({mensaje: 'No se pudo encontrar la habitacioón solicitada'})
+    }
+  };
+
   export const agregarHabitacion = async (req, res) => {
     try {
         const { numeroHabitacion, tipoHabitacion, precioHabitacion, imagenHabitacion, descripcionBreve, descripcionAmplia } = req.body;
