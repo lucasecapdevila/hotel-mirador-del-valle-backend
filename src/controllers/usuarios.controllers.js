@@ -1,16 +1,6 @@
 import Usuario from "../database/models/usuario.js";
 import bcrypt from 'bcrypt'
 
-export const listarUsuarios = async (req, res) => {
-  try {
-    const usuarios = await Usuario.find();
-    res.status(200).json(usuarios);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ mensaje: "Error al buscar los usuarios" });
-  }
-};
-
 export const registrarUsuario = async (req, res) => {
   try {
     const { userEmail, userPassword } = req.body
@@ -31,12 +21,58 @@ export const registrarUsuario = async (req, res) => {
       userName: usuarioNuevo.userName
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({
+    console.error(error);
+    res.status(500).json({
       mensaje: "El usuario no pudo ser creado",
     });
   }
 };
+
+export const loginUsuario = async (req, res) => {
+  try {
+    const { userEmail, userPassword } = req.body
+    const usuarioBuscado = await Usuario.findOne({userEmail})
+    if(!usuarioBuscado){
+      return res.status(400).json({
+        mensaje: 'El correo ingresado no se encuentra registrado.'
+      })
+    }
+
+    const passwordValido = bcrypt.compareSync(userPassword, usuarioBuscado.userPassword)
+    if(!passwordValido){
+      return res.status(400).json({
+        mensaje: 'La contraseña ingresada es incorrecta.'
+      })
+    }
+
+    //! Generar token
+
+
+
+    res.status(200),json({
+      mensaje: 'El usuario existe',
+      userName: usuarioBuscado.userName,
+      userEmail: usuarioBuscado.userEmail,
+      //! token
+    })
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      mensaje: 'Error al intentar loguear el usuario.'
+    })
+  }
+}
+
+export const listarUsuarios = async (req, res) => {
+  try {
+    const usuarios = await Usuario.find();
+    res.status(200).json(usuarios);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ mensaje: "Error al buscar los usuarios" });
+  }
+};
+
 export const obtenerUsuario = async (req, res) => {
   try {
     console.log(req.params.id);
