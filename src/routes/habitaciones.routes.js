@@ -1,7 +1,11 @@
-import {Router} from "express";
-import {listarHabitaciones} from "../controllers/habitaciones.controllers.js"
-import { agregarHabitacion } from '../controllers/habitaciones.controllers.js';
+import { Router } from 'express';
+import { agregarHabitacion, borrarHabitacion, listarHabitaciones, editarHabitacion } from '../controllers/habitaciones.controllers.js';
+
 const router = Router();
 
-router.route('/habitaciones').get(listarHabitaciones);
-export default router
+router.route('/habitaciones')
+  .post(agregarHabitacion)
+  .delete(borrarHabitacion)
+  .get(listarHabitaciones)
+  .put(editarHabitacion);
+export default router;
