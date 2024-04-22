@@ -9,9 +9,11 @@ export const agregarHabitacion = async (req, res) => {
     try {
         const { numeroHabitacion, tipoHabitacion, precioHabitacion, descripcionBreve, descripcionAmplia } = req.body;
         const nuevaHabitacion = new Habitacion({
+            id: null, //revisar si esto asigna un id o no
             numeroHabitacion,
             tipoHabitacion,
             precioHabitacion,
+            imagenHabitacion,
             descripcionBreve,
             descripcionAmplia
         });
