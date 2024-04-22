@@ -36,7 +36,7 @@ const habitacionSchema = new Schema({
       },
       message: (dato) => `${dato.value} no es un formato de imagen válido`,
     },
-    // unique: true,
+    unique: true,
   },
   descripcionBreve: {
     type: String,

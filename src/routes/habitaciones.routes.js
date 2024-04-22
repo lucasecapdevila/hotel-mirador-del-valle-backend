@@ -3,9 +3,6 @@ import { agregarHabitacion, borrarHabitacion, listarHabitaciones, editarHabitaci
 
 const router = Router();
 
-router.route('/habitaciones')
-  .post(agregarHabitacion)
-  .delete(borrarHabitacion)
-  .get(listarHabitaciones)
-  .put(editarHabitacion);
+router.route('/habitaciones').post(agregarHabitacion).get(listarHabitaciones)
+router.route('/habitaciones/:id').delete(borrarHabitacion).put(editarHabitacion);
 export default router;

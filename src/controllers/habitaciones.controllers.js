@@ -1,5 +1,3 @@
-
-
 import Habitacion from '../database/models/habitaciones.js';
 
 export const listarHabitaciones = async (req, res) => {
