@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const reservaSchema = new Schema({
   habitacion: {
-    type: String,
+    type: Number,
     required: true,
   },
   idHabitacion: {
@@ -22,18 +22,20 @@ const reservaSchema = new Schema({
     required: true,
   },
   precioTotal: {
-    type: String,
+    type: Number,
     required: true,
   },
   diasTotales: {
-    type: String,
+    type: Number,
     required: true,
   },
   estado: {
     type: String,
     require: true,
-    default: 'booked'
+    default: 'Reservado'
   },
+}, {
+  timestamps: true,
 });
 
 const Reserva = mongoose.model("reserva", reservaSchema);
