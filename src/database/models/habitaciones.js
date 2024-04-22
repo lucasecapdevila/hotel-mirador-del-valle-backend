@@ -50,6 +50,19 @@ const habitacionSchema = new Schema({
     minLength: 20,
     maxLength: 500,
   },
+  disponibilidad: [
+    {
+        fecha: {
+            type: Date,
+            required: true
+        },
+        disponible: {
+            type: Boolean,
+            required: true,
+            default: true
+        }
+    }
+]
 });
 
 const Habitacion = mongoose.model("Habitacion", habitacionSchema);
