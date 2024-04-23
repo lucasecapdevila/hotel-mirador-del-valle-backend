@@ -1,4 +1,6 @@
 import Reserva from "../database/models/reservas.js";
+import Habitacion from "../database/models/habitaciones.js";
+
 export const listarReservas = async (req, res) => {
   try {
     const reservas = await Reserva.find();
@@ -8,19 +10,29 @@ export const listarReservas = async (req, res) => {
     res.status(500).json({ mensaje: "Error al buscar los reservas" });
   }
 };
+
 export const crearReserva = async (req, res) => {
     try {
-      console.log(req);
-      console.log(req.body);
-      const reservaNueva = new Reserva(req.body);
-      await reservaNueva.save();
+      const reservaNueva = new Reserva(req.body)
+
+      const nuevaReserva = await reservaNueva.save()
+      await Habitacion.updateOne(
+        {_id: req.body.idHabitacion}, 
+        {$push: {
+          reservasActuales: {
+            idReserva: nuevaReserva._id,
+            fechaEntrada: nuevaReserva.fechaEntrada,
+            fechaSalida: nuevaReserva.fechaSalida,
+            estado: nuevaReserva.estado
+          }}})
+
       res.status(201).json({
-        mensaje: "La reserva fue creada con éxito",
+        mensaje: "La reserva fue creada exitosamente"
       });
     } catch (error) {
       console.log(error);
-      res.status(400).json({
-        mensaje: "La reserva no se realizó",
+      res.status(500).json({
+        mensaje: "La reserva no pudo ser realizada",
       });
     }
   };
