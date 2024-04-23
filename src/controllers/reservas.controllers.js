@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
 import Reserva from "../database/models/reservas.js";
+import Habitacion from "../database/models/habitaciones.js";
 
 export const listarReservas = async (req, res) => {
   try {
@@ -13,26 +13,19 @@ export const listarReservas = async (req, res) => {
 
 export const crearReserva = async (req, res) => {
     try {
-      const {
-        habitacion,
-        idHabitacion,
-        idUsuario,
-        fechaEntrada,
-        fechaSalida,
-        precioTotal,
-        diasTotales,
-      } = req.body
+      const reservaNueva = new Reserva(req.body)
 
-      const nuevaReserva =({
-        habitacion: habitacion.numeroHabitacion,
-        idHabitacion: habitacion._id,
-        idUsuario,
-        fechaEntrada: dayjs(fechaEntrada).format('DD-MM-YYYY'),
-        fechaSalida: dayjs(fechaSalida).format('DD-MM-YYYY'),
-        precioTotal,
-        diasTotales
-      })
-      nuevaReserva.save()
+      const nuevaReserva = await reservaNueva.save()
+      await Habitacion.updateOne(
+        {_id: req.body.idHabitacion}, 
+        {$push: {
+          reservasActuales: {
+            idReserva: nuevaReserva._id,
+            fechaEntrada: nuevaReserva.fechaEntrada,
+            fechaSalida: nuevaReserva.fechaSalida,
+            estado: nuevaReserva.estado
+          }}})
+
       res.status(201).json({
         mensaje: "La reserva fue creada exitosamente"
       });

@@ -30,18 +30,18 @@ const validacionReserva = [
     check("precioTotal")
     .notEmpty()
     .withMessage("El precio total es un dato obligatorio")
-    .isString()
+    .isNumeric()
     .withMessage("El precio total debe ser un string"),
     check("diasTotales")
     .notEmpty()
     .withMessage("Los dias totales deben ser un dato obligatorio")
-    .isString()
+    .isNumeric()
     .withMessage("Los dias totales deben ser un string"),
-    check("estado")
-    .notEmpty()
-    .withMessage("El estado es un dato obligatorio")
-    .isString()
-    .withMessage("El estado debe ser un string"),
+    // check("estado")
+    // .notEmpty()
+    // .withMessage("El estado es un dato obligatorio")
+    // .isString()
+    // .withMessage("El estado debe ser un string"),
     
     (req, res, next) => resultadoValidacion(req, res, next),
     
