@@ -20,7 +20,7 @@ const usuarioSchema = new Schema({
     maxLength: 250,
     validate: {
       validator: (valor) => {
-        return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(valor);
+        return  /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(valor);
       },
       message: (dato) => `${dato.value} no es una dirección de correo valida`,
     },
@@ -33,7 +33,7 @@ const usuarioSchema = new Schema({
     maxLength: 15,
     validate: {
       validator: (valor) => {
-        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(valor);
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/.test(valor);
       },
       message: (dato) => `${dato.value} no es una contraseña valida`,
     }

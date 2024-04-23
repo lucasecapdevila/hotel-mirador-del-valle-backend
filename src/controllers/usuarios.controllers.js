@@ -1,4 +1,5 @@
 import Usuario from "../database/models/usuario.js";
+import { validationResult } from "express-validator";
 export const listarUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find();
@@ -11,20 +12,23 @@ export const listarUsuarios = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
-    console.log(req);
-    console.log(req.body);
+    const existeEmail = await Usuario.findOne({ userEmail: req.body.userEmail });
+    if (existeEmail) {
+      return res.status(400).json({ mensaje: "Ya existe un usuario con el correo electronico enviado" });
+    }
     const usuarioNuevo = new Usuario(req.body);
     await usuarioNuevo.save();
     res.status(201).json({
-      mensaje: "El usuario fue creado exitosamente",
+      mensaje: "El usuario se creo correctamente",
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json({
-      mensaje: "El usuario no pudo ser creado",
+    res.status(404).json({
+      mensaje: "Error al crear el usuario",
     });
   }
 };
+
 export const obtenerUsuario = async (req, res) => {
   try {
     console.log(req.params.id);
