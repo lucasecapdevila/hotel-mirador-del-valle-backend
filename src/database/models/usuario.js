@@ -49,7 +49,7 @@ const usuarioSchema = new Schema({
     minLength: 3,
     maxLength: 30,
   },
-  role: {
+  esAdmin: {
     type: String,
     require: true,
   },
