@@ -29,14 +29,15 @@ export const listarHabitaciones = async (req, res) => {
 
   export const agregarHabitacion = async (req, res) => {
     try {
-        const { numeroHabitacion, tipoHabitacion, precioHabitacion, imagenHabitacion, descripcionBreve, descripcionAmplia } = req.body;
+        const { numeroHabitacion, tipoHabitacion, precioHabitacion, imagenHabitacion, descripcionBreve, descripcionAmplia,disponibilidad } = req.body;
         const nuevaHabitacion = new Habitacion({
             numeroHabitacion,
             tipoHabitacion,
             precioHabitacion,
             imagenHabitacion,
             descripcionBreve,
-            descripcionAmplia
+            descripcionAmplia,
+            disponibilidad
         });
         const habitacionGuardada = await nuevaHabitacion.save();
         res.status(201).json(habitacionGuardada);
