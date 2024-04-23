@@ -1,5 +1,5 @@
 import Usuario from "../database/models/usuario.js";
-import { validationResult } from "express-validator";
+import bcrypt from 'bcrypt';
 export const listarUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find();
@@ -12,14 +12,19 @@ export const listarUsuarios = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
-    const existeEmail = await Usuario.findOne({ userEmail: req.body.userEmail });
+    const {userEmail, userPassword} = req.body;
+    const existeEmail = await Usuario.findOne({ userEmail });
     if (existeEmail) {
       return res.status(400).json({ mensaje: "Ya existe un usuario con el correo electronico enviado" });
     }
     const usuarioNuevo = new Usuario(req.body);
+    const salt = bcrypt.genSaltSync(10);
+    usuarioNuevo.userPassword=bcrypt.hashSync(userPassword, salt)
     await usuarioNuevo.save();
     res.status(201).json({
       mensaje: "El usuario se creo correctamente",
+      userEmail: usuarioNuevo.userEmail,
+      userName: usuarioNuevo.userName,
     });
   } catch (error) {
     console.log(error);
@@ -28,7 +33,16 @@ export const crearUsuario = async (req, res) => {
     });
   }
 };
-
+export const login = async (req, res) => {
+  try {
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      mensaje: "Error al intentar loguear un usuario.",
+    });
+  }
+};
 export const obtenerUsuario = async (req, res) => {
   try {
     console.log(req.params.id);

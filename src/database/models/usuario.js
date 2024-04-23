@@ -19,24 +19,16 @@ const usuarioSchema = new Schema({
     minLength: 4,
     maxLength: 250,
     validate: {
-      validator: (valor) => {
-        return  /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(valor);
-      },
-      message: (dato) => `${dato.value} no es una dirección de correo valida`,
-    },
+      validator: (value)=>{
+        const pattern = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
+        return pattern.test(value)
+    }
+  },
     unique: true,
   },
   userPassword: {
     type: String,
     required: true,
-    minLength: 8,
-    maxLength: 15,
-    validate: {
-      validator: (valor) => {
-        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/.test(valor);
-      },
-      message: (dato) => `${dato.value} no es una contraseña valida`,
-    }
   },
   userName: {
     type: String,
@@ -56,6 +48,10 @@ const usuarioSchema = new Schema({
     required: true,
     minLength: 3,
     maxLength: 30,
+  },
+  role: {
+    type: String,
+    require: true,
   },
 });
 const Usuario = mongoose.model("usuario", usuarioSchema);
