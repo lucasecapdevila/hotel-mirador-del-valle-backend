@@ -19,6 +19,7 @@
   "author": "Guadalupe Noemi Villarreal, Pablo Alejandro Figueroa, José Manuel Vera Rodríguez, Natalia Gabriela Lopez, Agustina Del Milagro Suarez, Lucas Capdevila",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
