@@ -6,11 +6,11 @@ const usuarioSchema = new Schema({
     required: true,
     validate: {
       validator: (valor) => {
-        return  /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/.test(valor);
+        return /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/.test(valor);
       },
       message: (dato) => `${dato.value} no es un formato de imagen válido`,
     },
-   
+
     unique: true,
   },
   userEmail: {
@@ -19,11 +19,12 @@ const usuarioSchema = new Schema({
     minLength: 4,
     maxLength: 250,
     validate: {
-      validator: (value)=>{
-        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
-        return pattern.test(value)
-    }
-  },
+      validator: (value) => {
+        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return pattern.test(value);
+      },
+      message: (props) => `${props.value} No es un E-mail válido`,
+    },
     unique: true,
   },
   userPassword: {
@@ -51,7 +52,9 @@ const usuarioSchema = new Schema({
   },
   esAdmin: {
     type: String,
-    require: true,
+
+    enum: ["Administrador", "Usuario"],
+    default: "Usuario",
   },
 });
 const Usuario = mongoose.model("usuario", usuarioSchema);
