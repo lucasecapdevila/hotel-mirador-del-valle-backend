@@ -40,6 +40,7 @@ export const crearUsuario = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { userEmail, userPassword } = req.body;
+    console.log(userEmail);
     const existeEmail = await Usuario.findOne({ userEmail });
     if (!existeEmail) {
       return res.status(400).json({ mensaje: "Correo o password incorrectos" });
