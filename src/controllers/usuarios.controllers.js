@@ -1,5 +1,6 @@
 import Usuario from "../database/models/usuario.js";
 import bcrypt from "bcrypt";
+import generarJWT from "../helpers/generarJWT.js";
 export const listarUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find();
@@ -29,6 +30,7 @@ export const crearUsuario = async (req, res) => {
       mensaje: "El usuario se creo correctamente",
       userEmail: usuarioNuevo.userEmail,
       userName: usuarioNuevo.userName,
+      userRole: usuarioNuevo.role,
     });
   } catch (error) {
     console.log(error);
@@ -52,11 +54,15 @@ export const login = async (req, res) => {
     if (!passwordValido) {
       return res.status(400).json({ mensaje: "Correo o password incorrectos" });
     }
+
+    const token = await generarJWT(existeEmail.userName, existeEmail.userEmail)
+
     res.status(200).json({
       mensaje: "El usuario existe",
       nombreUsuario: existeEmail.userName,
       email: existeEmail.userEmail,
-      rol: existeEmail.esAdmin,
+      rol: existeEmail.role,
+      token
     });
   } catch (error) {
     console.error(error);

@@ -50,7 +50,7 @@ const usuarioSchema = new Schema({
     minLength: 3,
     maxLength: 30,
   },
-  esAdmin: {
+  role: {
     type: String,
 
     enum: ["Administrador", "Usuario"],
