@@ -46,13 +46,6 @@ const validacionUsuario = [
     .withMessage("El apellido del usuario debe ser un string")
     .isLength({ min: 3, max: 30 })
     .withMessage("El apellido del usuario debe tener entre 3 y 30 letras"),
-    check("role")
-    .isString()
-    .withMessage("El rol del usuario debe ser un string")
-    .isIn(["Administrador", "Usuario"])
-    .withMessage(
-      "EL tipo de usuario debe ser una de las siguientes opciones (Administrador, Usuario)"
-    ),
 
   (req, res, next) => resultadoValidacion(req, res, next),
 ];
