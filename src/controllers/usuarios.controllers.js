@@ -16,9 +16,7 @@ export const crearUsuario = async (req, res) => {
     const { userEmail, userPassword } = req.body;
     const existeEmail = await Usuario.findOne({ userEmail });
     if (existeEmail) {
-      return res
-        .status(400)
-        .json({
+      return res.status(400).json({
           mensaje: "Ya existe un usuario con el correo electronico enviado",
         });
     }
@@ -39,6 +37,7 @@ export const crearUsuario = async (req, res) => {
     });
   }
 };
+
 export const login = async (req, res) => {
   try {
     const { userEmail, userPassword } = req.body;
