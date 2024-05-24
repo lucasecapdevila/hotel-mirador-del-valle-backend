@@ -23,7 +23,7 @@ export const listarHabitaciones = async (req, res) => {
     }
     catch (error) {
         console.error(error);
-        res.status(400).json({mensaje: 'No se pudo encontrar la habitacioón solicitada'})
+        res.status(400).json({mensaje: 'No se pudo encontrar la habitación solicitada'})
     }
   };
 
@@ -66,7 +66,7 @@ export const editarHabitacion = async (req, res) => {
         res.status(200).json(habitacionActualizada);
     } catch (error) {
         console.error('Error al editar la habitación:', error);
-        res.status(500).json({ mensaje: 'Error de parametros ingresados. habitación no actualizada.', error });
+        res.status(500).json({ mensaje: 'Error de parámetros ingresados. habitación no actualizada.', error });
     }
 };
 

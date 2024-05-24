@@ -21,9 +21,13 @@ const validacionUsuario = [
     .withMessage("La contraseña es un dato obligatorio")
     .isString()
     .withMessage("La contraseña debe ser un string")
-    .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,15}$/)
+    .isLength({min: 10})
     .withMessage(
-      "La contraseña debe tener entre 8 y 15 caracteres, al menos una mayúscula, una minúscula y ningún otro símbolo"
+      "La contraseña debe tener al menos 10 carácteres."
+    )
+    .matches(/^\S*$/)
+    .withMessage(
+      "La contraseña debe contener al menos una mayúscula, una minúscula y un símbolo."
     ),
   check("userName")
     .notEmpty()
